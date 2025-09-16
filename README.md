@@ -1,2 +1,11 @@
-# JAVA-Practice
-academic record/growth record
+# Java Practice Codes
+
+이 저장소는 Java를 공부하면서 작성한 연습 코드들을 모아둔 곳입니다.  
+
+## 특징
+- 파일명: 날짜 기반(`J0915.java` → 9월 15일 작성)
+- 예외 처리, 입력값 검증, 간단한 로직 실습
+- MIT 라이선스 적용
+
+## License
+이 저장소의 모든 코드는 [MIT License](./LICENSE)에 따라 자유롭게 사용 가능합니다.
