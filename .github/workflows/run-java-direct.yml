@@ -1,15 +1,14 @@
-name: Run .java directly
+name: Run Any Java File
 
 on:
-  # Actions 탭에서 수동 실행
   workflow_dispatch:
     inputs:
       java_file:
-        description: 'Path to .java (no package, e.g. src/J0915.java)'
+        description: 'Path to the .java file in this repo'
         required: true
         default: 'src/J0915.java'
       input_data:
-        description: 'Stdin lines (use \n for newlines)'
+        description: 'Input for the program (use \n for new lines)'
         required: false
         default: "80\n90\n70\n-1"
       jdk:
@@ -29,12 +28,16 @@ jobs:
           java-version: ${{ github.event.inputs.jdk }}
           distribution: temurin
 
-      - name: Compile
+      - name: Show repo files
+        run: ls -R
+
+      - name: Compile selected file
         run: |
           mkdir -p build
+          echo "Compiling ${{ github.event.inputs.java_file }}"
           javac -encoding UTF-8 -d build "${{ github.event.inputs.java_file }}"
 
-      - name: Run (non-interactive)
+      - name: Run compiled class
         run: |
           CLASS_NAME=$(basename "${{ github.event.inputs.java_file }}" .java)
           printf "%b" "${{ github.event.inputs.input_data }}" | java -cp build "$CLASS_NAME"
