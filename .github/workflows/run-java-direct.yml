@@ -6,11 +6,11 @@ on:
       java_file:
         description: 'Path to the .java file in this repo'
         required: true
-        default: 'src/J0915.java'
+        default: 'codes/.java'
       input_data:
         description: 'Input for the program (use \n for new lines)'
         required: false
-        default: "80\n90\n70\n-1"
+        default: ""
       jdk:
         description: 'JDK version'
         required: false
