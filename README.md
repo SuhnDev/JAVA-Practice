@@ -13,7 +13,7 @@
 
 ## 기록
 
-- [J0915.java](./codes/J0915.java)
+- [J0915.java](./codes/J0915.java) (평균 점수 계산)
 
 ---
 
