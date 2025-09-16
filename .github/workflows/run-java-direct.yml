@@ -1,0 +1,40 @@
+name: Run .java directly
+
+on:
+  # Actions 탭에서 수동 실행
+  workflow_dispatch:
+    inputs:
+      java_file:
+        description: 'Path to .java (no package, e.g. src/J0915.java)'
+        required: true
+        default: 'src/J0915.java'
+      input_data:
+        description: 'Stdin lines (use \n for newlines)'
+        required: false
+        default: "80\n90\n70\n-1"
+      jdk:
+        description: 'JDK version'
+        required: false
+        default: '17'
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ github.event.inputs.jdk }}
+          distribution: temurin
+
+      - name: Compile
+        run: |
+          mkdir -p build
+          javac -encoding UTF-8 -d build "${{ github.event.inputs.java_file }}"
+
+      - name: Run (non-interactive)
+        run: |
+          CLASS_NAME=$(basename "${{ github.event.inputs.java_file }}" .java)
+          printf "%b" "${{ github.event.inputs.input_data }}" | java -cp build "$CLASS_NAME"
