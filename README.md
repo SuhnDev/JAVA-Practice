@@ -1,4 +1,4 @@
-# Java Practice Codes
+# ☕ Java Practice Codes
 
 이 저장소는 Java를 공부하면서 작성한 연습 코드들을 모아둔 곳입니다.  
 
