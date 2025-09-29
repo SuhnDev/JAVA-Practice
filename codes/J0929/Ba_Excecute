@@ -65,6 +65,16 @@ public class Ba_Excecute {
         }
     }
     
+    private static boolean checkpwd(BankAccount accts, String pwd) {
+    	try {
+            int inputPwd = Integer.parseInt(pwd);
+            return accts.getPwd() == inputPwd;
+        } catch (NumberFormatException e) {
+            System.out.println("숫자만 입력 가능합니다.");
+            return false;
+        }
+    }
+    
     public static void main(String[] args) {
     	BankAccount ac1 = new BankAccount(); //생성자1 사용
     	BankAccount ac2 = new BankAccount("Alice"); //생성자2 사용
@@ -93,6 +103,12 @@ public class Ba_Excecute {
     					break;
     				}
     				case 2: { //2이라면
+    					String password = prompt("비밀번호를 입력하시오. (정수 4자리)\n>> ");
+    					if(!checkpwd(accts[acs],password)) {
+    						System.out.println("잘못된 비밀번호 입니다.");
+    						break;
+    					}
+    					System.out.printf("비밀번호 확인 완료되었습니다.");
     				    Integer amt = readAmount("출금"); //Interger 자료형 amt(금액) 변수 생성 (readAmount 메소드 이용하여 음수인지 아닌지 판단)
     				    if (amt == null) break; //null -> 입력값이 음수
 
