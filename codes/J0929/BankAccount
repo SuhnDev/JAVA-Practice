@@ -1,0 +1,43 @@
+public class BankAccount { //뱅크어카운트 클래스 정의
+	private String owner; //private 변수 owner
+	private int balance; //private 변수 balance
+	
+	public BankAccount() { //생성자1 : owner, balance 고정
+		this.owner = "Unknown";
+		this.balance = 0;
+	}
+	public BankAccount(String user) { //생성자2 : owner 지정, balance 고정
+		this.owner = user;
+		this.balance = 0;
+	}
+	public BankAccount(String user, int num) { //생성자3 : owner, balance 지정
+		this.owner = user;
+		this.balance = num;
+	}
+	
+	public void deposit(int money) { //예금 메소드
+		this.balance += money;
+	}
+	
+	public boolean withdraw(int money) { //출금 메소드
+	    if (money <= this.balance) { //-계좌 방지
+	        this.balance -= money;
+	        return true; //성공적으로 계좌 차감, true 리턴
+	    } else { //입력 금액이 계좌 금액보다 클시 오류 메시지 출력
+	        System.out.println("잔액이 부족합니다.");
+	        return false; //계좌 차감 실패, false 리턴
+	    }
+	}
+	
+	public String getOwner() { //private 변수인 owner 값을 가져오는 메소드
+        return owner;
+    }
+	public int getBalance() { //private 변수인 balance 값을 가져오는 메소드
+        return balance;
+    }
+	
+	@Override //재정의
+	public String toString() { //Object 클래스의 기본 toString() 메소드는 클래스이름@해시코드 반환, 계좌 정보 문자열 출력하도록 재정의
+	    return String.format("예금주: %s, 잔액: %d원", owner, balance); //반복되는 출력패턴 간소화
+	}
+}
